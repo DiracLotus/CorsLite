@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">
+            <button id="lemonTea" class="drinks" type="button" onclick="makeTea()">Make a Lemon Tea</button>
+            <button id="coffeeTime" class="drinks" type="button" onclick="makeCoffee()">Make a Coffee</button>
+            <button id="chocolate" class="drinks" type="button" onclick="makeChocolate()">Make a Hot Chocolate</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr />
+    </div>
+</div>
+<div class="row">
+     <ul id="messagesList"></ul>
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/display.js"></script>
+
+<script>
+    /// This really badly needs refactoring!
+    function makeCoffee() {
+        document.getElementById("lemonTea").disabled = true;
+        document.getElementById("coffeeTime").disabled = true;
+        document.getElementById("chocolate").disabled = true;
+
+        fetch('api/drink/coffee', { method: 'POST' })
+            .then(() => {
+                document.getElementById("lemonTea").disabled = false;
+                document.getElementById("coffeeTime").disabled = false;
+                document.getElementById("chocolate").disabled = false;
+            }
+            );
+    }
+
+    function makeTea() {
+        document.getElementById("lemonTea").disabled = true;
+        document.getElementById("coffeeTime").disabled = true;
+        document.getElementById("chocolate").disabled = true;
+
+        fetch('api/drink/lemontea', { method: 'POST' })
+            .then(() => {
+                document.getElementById("lemonTea").disabled = false;
+                document.getElementById("coffeeTime").disabled = false;
+                document.getElementById("chocolate").disabled = false;
+            }
+            );
+    }
+
+    function makeChocolate() {
+        document.getElementById("lemonTea").disabled = true;
+        document.getElementById("coffeeTime").disabled = true;
+        document.getElementById("chocolate").disabled = true;
+
+        fetch('api/drink/chocolate', { method: 'POST' })
+            .then(() => {
+                document.getElementById("lemonTea").disabled = false;
+                document.getElementById("coffeeTime").disabled = false;
+                document.getElementById("chocolate").disabled = false;
+            }
+        );
+    }
+</script>
